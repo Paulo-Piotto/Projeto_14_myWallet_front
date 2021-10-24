@@ -3,6 +3,7 @@ import { useState } from 'react';
 import SignIn from './components/signIn';
 import SignUp from './components/signUp';
 import UserContext from './contexts/userContext'
+import Home from './components/home';
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -11,12 +12,19 @@ export default function App() {
     <UserContext.Provider value={{user, setUser}}>
       <BrowserRouter>
         <Switch>
+
          <Route path='/' exact >
             <SignIn />
           </Route>
+
           <Route path='/sign-up'exact >
             <SignUp />
           </Route>
+
+          <Route>
+            <Home path='/home' exact />
+          </Route>
+
         </Switch>
       </BrowserRouter>
     </UserContext.Provider>
