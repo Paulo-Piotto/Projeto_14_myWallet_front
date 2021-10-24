@@ -1,5 +1,4 @@
 import axios from "axios";
-import SignUp from "../components/signUp";
 
 const URL = "http://localhost:4000/";
 
@@ -19,4 +18,5 @@ function signUpUser(user) {
 
 export{
     signInUser,
+    signUpUser,
 }

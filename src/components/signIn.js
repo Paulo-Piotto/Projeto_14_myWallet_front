@@ -23,9 +23,6 @@ export default function SignIn(){
             .catch((err) => {
                 alert('Usuário ou senha incorretos!')
             })
-       
-        
-        
     }
 
     return (
