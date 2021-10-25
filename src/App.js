@@ -4,6 +4,8 @@ import SignIn from './components/signIn';
 import SignUp from './components/signUp';
 import UserContext from './contexts/userContext'
 import Home from './components/home';
+import AddMoney from './components/add';
+import RemoveMoney from './components/remove';
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -21,8 +23,16 @@ export default function App() {
             <SignUp />
           </Route>
 
-          <Route>
-            <Home path='/home' exact />
+          <Route path='/home' exact >
+            <Home />
+          </Route>
+
+          <Route path='/add' exact >
+            <AddMoney />
+          </Route>
+
+          <Route  path='/remove' exact >
+            <RemoveMoney />
           </Route>
 
         </Switch>

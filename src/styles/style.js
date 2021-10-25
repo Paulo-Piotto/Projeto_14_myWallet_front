@@ -45,10 +45,22 @@ const TextButton = styled.p`
     margin-top: 36px;
 `
 
+const Header = styled.div`
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 26px;
+    font-weight: 500;
+`
+
 export{
     MainContainer,
     Input,
     Logo,
     Button,
     TextButton,
+    Header,
 }

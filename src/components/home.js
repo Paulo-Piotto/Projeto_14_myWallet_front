@@ -1,8 +1,12 @@
-import { MainContainer } from "../styles/style";
+import { MainContainer, Header } from "../styles/style";
 import styled from "styled-components";
 import { IoExitOutline, IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5";
+import { useHistory } from "react-router-dom";
+import { useContext } from "react/cjs/react.development";
 
 export default function Home(){
+    const history = useHistory();
+
     return (
         <MainContainer>
             <Header>
@@ -13,11 +17,11 @@ export default function Home(){
                 <p>Não há registros de entrada ou saída</p>
             </InfoTable>
             <Buttons>
-                <Button>
+                <Button onClick={() => history.push('/add')}>
                     <Add />
                     <p>Nova entrada</p>
                 </Button>
-                <Button>
+                <Button onClick={() => history.push('/remove')}>
                     <Remove />
                     <p>Nova Saída</p>
                 </Button>
@@ -25,17 +29,6 @@ export default function Home(){
         </MainContainer>
     );
 }
-
-const Header = styled.div`
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    font-size: 26px;
-    font-weight: 500;
-`
 
 const InfoTable = styled.div`
     width: 100%;
