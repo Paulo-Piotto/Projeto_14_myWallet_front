@@ -28,5 +28,5 @@ export{
     signInUser,
     signUpUser,
     transaction,
-    balance,
+    balance
 }

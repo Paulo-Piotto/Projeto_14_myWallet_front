@@ -2,19 +2,52 @@ import { MainContainer, Header } from "../styles/style";
 import styled from "styled-components";
 import { IoExitOutline, IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5";
 import { useHistory } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../contexts/userContext";
+import { balance } from "../services/api.services";
+import Transaction from "./transaction";
+import Profit from "./profit";
+
 
 export default function Home(){
     const history = useHistory();
+    const [transactions, setTransactions] = useState({
+        amount: { value: 0},
+        history: []
+    });
+    const { user, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        balance(user.token)
+        .then((resp) => {
+            setTransactions(resp.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [])
+
+    function logOut(){
+        setUser({});
+        history.push('/');
+    }
+
+
 
     return (
         <MainContainer>
             <Header>
-                <h2>Olá, Fulano</h2>
-                <IoExitOutline />
+                <h2>Olá, {user.name}</h2>
+                <IoExitOutline onClick={logOut} />
             </Header>
-            <InfoTable>
-                <p>Não há registros de entrada ou saída</p>
+            <InfoTable transactions={transactions}>
+                {!transactions.history[0] ? <p>Não há registros de entrada ou saída</p>
+                :
+                transactions.history.map((data, index) => <Transaction key={index} data={data} />)
+                }
+                {!transactions.history[0] ? ''
+                : <Profit transactions={transactions} />
+                }
             </InfoTable>
             <Buttons>
                 <Button onClick={() => history.push('/add')}>
@@ -37,9 +70,15 @@ const InfoTable = styled.div`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: ${ ({transactions}) =>
+            !transactions.history[0] ? 'center' : 'flex-start' };
     align-items: center;
     text-align: center;
+    color: ${ ({transactions}) =>
+            !transactions.history[0] ? '#868686' : 'black' };
+    padding: 15px;
+    position: relative;
+    overflow-y: scroll;
 `
 
 const Buttons = styled.div`
