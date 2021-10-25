@@ -41,10 +41,12 @@ export default function Home(){
                 <IoExitOutline onClick={logOut} />
             </Header>
             <InfoTable transactions={transactions}>
+                <Container>
                 {!transactions.history[0] ? <p>Não há registros de entrada ou saída</p>
                 :
                 transactions.history.map((data, index) => <Transaction key={index} data={data} />)
                 }
+                </Container>
                 {!transactions.history[0] ? ''
                 : <Profit transactions={transactions} />
                 }
@@ -71,13 +73,13 @@ const InfoTable = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: ${ ({transactions}) =>
-            !transactions.history[0] ? 'center' : 'flex-start' };
+            !transactions.history[0] ? 'center' : 'space-between' };
     align-items: center;
     text-align: center;
     color: ${ ({transactions}) =>
             !transactions.history[0] ? '#868686' : 'black' };
     padding: 15px;
-    position: relative;
+    /* position: relative; */
     overflow-y: scroll;
 `
 
@@ -115,4 +117,8 @@ const Add = styled(IoAddCircleOutline)`
 
 const Remove = styled(IoRemoveCircleOutline)`
     font-size: 25px;
+`
+
+const Container = styled.div`
+    width: 100%;
 `

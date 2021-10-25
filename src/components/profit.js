@@ -12,16 +12,13 @@ export default function Profit({transactions}){
 }
 
 const BalanceContainer = styled.div`
-    position: absolute;
     display: flex;
-    background-color: white;
     z-index: 2;
     justify-content: space-between;
     align-items: center;
-    width: 92%;
-    height: 12%;
-    bottom: 2px;
+    width: 100%;
     font-size: 17px;
+    margin-top: 20px;
 
     p{
         font-weight: bold;
