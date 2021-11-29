@@ -26,7 +26,10 @@
         "react/jsx-no-bind": "off",
         "no-use-before-define": "off",
         "no-nested-ternary": "off",
-        "react/no-arrow-function-lifecycle": "on",
-        "react/no-invalid-html-attribute": "on"
+        "react/no-arrow-function-lifecycle": "off",
+        "react/no-invalid-html-attribute": "off",
+        "react/no-unused-class-component-methods": "off",
+        "no-alert": "off",
+        "no-console": "off"
     }
 }
